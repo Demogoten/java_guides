@@ -4,15 +4,22 @@
 import java.util.Scanner;
 public class apples {
     public static void main(String args[]) {
-        int boy,girl;
-        boy=18;
-        girl=68;
+        int age;
+        age = 3;
 
-        if(boy>10 || girl <60)
-            System.out.println("you can enter");
-            else
-            System.out.println("you can not enter");
-
+        switch (age) {
+            case 1:
+                System.out.println("You can crawl");
+                break;
+            case 2:
+                System.out.println("You can talk");
+                break;
+            case 3:
+                System.out.println("You can get in trouble");
+                break;
+            default:
+                System.out.println("I dont know how old you are");
+                break;
         }
     }
 }
