@@ -6,8 +6,6 @@ public class apples {
     public static void main(String args[]) {
         int age;
         age = 3;
-
-
         switch (age) {
             case 1:
                 System.out.println("You can crawl");
