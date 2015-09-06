@@ -19,6 +19,9 @@ public class apples {
             default:
                 System.out.println("I dont know how old you are");
                 break;
+
+
+
         }
     }
 }
