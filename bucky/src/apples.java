@@ -4,20 +4,16 @@ import java.util.Scanner;
 public class apples {
     public static void main(String args[]) {
 
-       int age=60;
+       int age=45;
 
-        if(age<50){
-            System.out.println("you are young");
-                    }
-        else {
-            System.out.println("you are old");
-            if(age>75){
-                System.out.println("you are really old!!");
-            }
-            else{
-                System.out.println("don't worry you aren't that old");
-            }
-        }
+        if(age>60)
+            System.out.println("you are a senior citizen");
+        else if(age>=50)
+            System.out.println("you are in your 50s");
+        else if(age>=40)
+            System.out.println("you are in your 40s");
+        else
+            System.out.println("you are a young buck");
     }
 }
 
