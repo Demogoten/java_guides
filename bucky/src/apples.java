@@ -4,10 +4,20 @@ import java.util.Scanner;
 public class apples {
     public static void main(String args[]) {
 
-        tuna tunaObject = new tuna("kelsey");
-        tuna tunaObject2 = new tuna("Nicole");
-        tunaObject.saying();
-        tunaObject2.saying();
+       int age=60;
+
+        if(age<50){
+            System.out.println("you are young");
+                    }
+        else {
+            System.out.println("you are old");
+            if(age>75){
+                System.out.println("you are really old!!");
+            }
+            else{
+                System.out.println("don't worry you aren't that old");
+            }
+        }
     }
 }
 
