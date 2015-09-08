@@ -1,19 +1,16 @@
 
-import java.util.Scanner;
+//import java.util.Scanner;
+import java.util.Random;
 
 public class apples {
     public static void main(String args[]) {
 
-       int age=45;
+        System.out.println("index\t value");
+        int bucky[]={32,12,16,54,2};
 
-        if(age>60)
-            System.out.println("you are a senior citizen");
-        else if(age>=50)
-            System.out.println("you are in your 50s");
-        else if(age>=40)
-            System.out.println("you are in your 40s");
-        else
-            System.out.println("you are a young buck");
+        for(int counter=0;counter<bucky.length;counter++){
+            System.out.println(counter + "\t" + bucky[counter]);
+        }
     }
 }
 
