@@ -9,7 +9,6 @@ public class apples {
         bucky.digest(fo);
         bucky.digest(po);
 
-
       }
 
 }
