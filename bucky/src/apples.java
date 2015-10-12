@@ -1,13 +1,16 @@
-import javax.swing.JFrame;
-
 
 public class apples {
     public static void main(String args[]) {
 
-        tuna bucky = new tuna();
-        bucky.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        bucky.setSize(350, 100);
-        bucky.setVisible(true);
+        fatty bucky = new fatty();
+        food fo = new food();
+        food po = new potpie();
+
+        bucky.digest(fo);
+        bucky.digest(po);
+
+
       }
+
 }
 
