@@ -1,8 +1,9 @@
 public class tuna extends food{
 
-        void eat(){
+       public void eat(){
             System.out.println("this tuna is great");
         }
+
         }
 
 
