@@ -1,42 +1,70 @@
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-public class Gui extends JFrame {
-    private JButton reg;
-    private JButton custom;
+public class Gui extends JFrame{
+
+    private JTextField tf;
+    private Font pf;
+    private Font bf;
+    private Font itf;
+    private Font bif;
+    private JRadioButton pb;
+    private JRadioButton bb;
+    private JRadioButton ib;
+    private JRadioButton bib;
+    private ButtonGroup group;
 
     public Gui(){
-        super("The title");
+        super("the title");
         setLayout(new FlowLayout());
 
-        reg = new JButton("reg Button");
-        add(reg);
+        tf = new JTextField("Bucky is awesome and hot", 25);
+        add(tf);
 
-        Icon punga = new ImageIcon(getClass().getResource("punga.png"));
-        Icon Kyoro = new ImageIcon(getClass().getResource("Kyoro.png"));
+        pb=new JRadioButton("plain", true);
+        bb=new JRadioButton("bold", false);
+        ib=new JRadioButton("italic", false);
+        bib=new JRadioButton("bold and italic", false);
 
-        custom = new JButton("Custom",punga);
-        custom.setRolloverIcon(Kyoro);
-        add(custom);
+        add(pb);
+        add(bb);
+        add(ib);
+        add(bib);
 
-        HandlerClass handler = new HandlerClass();
-        reg.addActionListener(handler);
-        custom.addActionListener(handler);
+        group = new ButtonGroup();
+        group.add(pb);
+        group.add(bb);
+        group.add(ib);
+        group.add(bib);
 
+        pf = new Font("Serif", Font.PLAIN,14);
+        bf = new Font("Serif", Font.BOLD,14);
+        itf = new Font("Serif", Font.ITALIC,14);
+        bif = new Font("Serif", Font.BOLD+ Font.ITALIC,14);
+        tf.setFont(pf);
+
+        // wait for event to happen, pass in font object to contructor
+        pb.addItemListener(new HandlerClass(pf));
+        bb.addItemListener(new HandlerClass(bf));
+        ib.addItemListener(new HandlerClass(itf));
+        bib.addItemListener(new HandlerClass(bif));
 
     }
 
-    private class HandlerClass implements  ActionListener{
-        public void actionPerformed(ActionEvent event){
-            JOptionPane.showMessageDialog(null,String.format("%s",event.getActionCommand()));
+    private class HandlerClass implements ItemListener{
+        private Font font;
+
+        //the font object get variable font
+        public HandlerClass(Font f){
+            font = f;
         }
-    }
 
+        //sets the font to the font object that was passed in
+        public void itemStateChanged(ItemEvent event){
+            tf.setFont(font);
+        }
+
+    }
 
 }
