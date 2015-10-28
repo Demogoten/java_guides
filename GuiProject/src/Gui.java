@@ -4,67 +4,33 @@ import javax.swing.*;
 
 public class Gui extends JFrame{
 
-    private JTextField tf;
-    private Font pf;
-    private Font bf;
-    private Font itf;
-    private Font bif;
-    private JRadioButton pb;
-    private JRadioButton bb;
-    private JRadioButton ib;
-    private JRadioButton bib;
-    private ButtonGroup group;
+    private JComboBox box;
+    private JLabel picture;
+
+    private static String[] filename = {"b.png", "x.png"};
+    private Icon[] pics = {new ImageIcon(getClass().getResource(filename[0])),new ImageIcon(getClass().getResource(filename[1]))};
 
     public Gui(){
         super("the title");
         setLayout(new FlowLayout());
 
-        tf = new JTextField("Bucky is awesome and hot", 25);
-        add(tf);
+        box = new JComboBox(filename);
 
-        pb=new JRadioButton("plain", true);
-        bb=new JRadioButton("bold", false);
-        ib=new JRadioButton("italic", false);
-        bib=new JRadioButton("bold and italic", false);
+        box.addItemListener(
+                new ItemListener(){
+                    public void itemStateChanged(ItemEvent event){
+                        if(event.getStateChange()== ItemEvent.SELECTED)
+                            picture.setIcon(pics[box.getSelectedIndex()]);
+                    }
+                }
 
-        add(pb);
-        add(bb);
-        add(ib);
-        add(bib);
-
-        group = new ButtonGroup();
-        group.add(pb);
-        group.add(bb);
-        group.add(ib);
-        group.add(bib);
-
-        pf = new Font("Serif", Font.PLAIN,14);
-        bf = new Font("Serif", Font.BOLD,14);
-        itf = new Font("Serif", Font.ITALIC,14);
-        bif = new Font("Serif", Font.BOLD+ Font.ITALIC,14);
-        tf.setFont(pf);
-
-        // wait for event to happen, pass in font object to contructor
-        pb.addItemListener(new HandlerClass(pf));
-        bb.addItemListener(new HandlerClass(bf));
-        ib.addItemListener(new HandlerClass(itf));
-        bib.addItemListener(new HandlerClass(bif));
+        );
+        add(box);
+        picture = new JLabel(pics[0]);
+        add(picture);
 
     }
 
-    private class HandlerClass implements ItemListener{
-        private Font font;
 
-        //the font object get variable font
-        public HandlerClass(Font f){
-            font = f;
-        }
-
-        //sets the font to the font object that was passed in
-        public void itemStateChanged(ItemEvent event){
-            tf.setFont(font);
-        }
-
-    }
 
 }
