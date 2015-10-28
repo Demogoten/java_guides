@@ -1,36 +1,34 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
 public class Gui extends JFrame{
 
-    private JComboBox box;
-    private JLabel picture;
-
-    private static String[] filename = {"b.png", "x.png"};
-    private Icon[] pics = {new ImageIcon(getClass().getResource(filename[0])),new ImageIcon(getClass().getResource(filename[1]))};
+    private JList list;
+    private static String[] colornames = {"black","blue","red","white"};
+    private static Color[] colors ={Color.BLACK,Color.BLUE,Color.RED, Color.WHITE};
 
     public Gui(){
-        super("the title");
+        super("title");
         setLayout(new FlowLayout());
 
-        box = new JComboBox(filename);
+        list = new JList(colornames);
+        list.setVisibleRowCount(4);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        add(new JScrollPane(list));
 
-        box.addItemListener(
-                new ItemListener(){
-                    public void itemStateChanged(ItemEvent event){
-                        if(event.getStateChange()== ItemEvent.SELECTED)
-                            picture.setIcon(pics[box.getSelectedIndex()]);
+        list.addListSelectionListener(
+                new ListSelectionListener() {
+                    @Override
+                    public void valueChanged(ListSelectionEvent event) {
+                        getContentPane().setBackground(colors[list.getSelectedIndex()]);
+
                     }
                 }
-
         );
-        add(box);
-        picture = new JLabel(pics[0]);
-        add(picture);
+
 
     }
-
-
 
 }
