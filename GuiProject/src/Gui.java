@@ -5,28 +5,38 @@ import javax.swing.event.*;
 
 public class Gui extends JFrame{
 
-    private JList list;
-    private static String[] colornames = {"black","blue","red","white"};
-    private static Color[] colors ={Color.BLACK,Color.BLUE,Color.RED, Color.WHITE};
+    private JList leftlist;
+    private JList rightlist;
+    private JButton movebutton;
+    private static String[] foods ={"bacon", "wings","ham", "beef", "morebacon"};
 
     public Gui(){
         super("title");
         setLayout(new FlowLayout());
 
-        list = new JList(colornames);
-        list.setVisibleRowCount(4);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        add(new JScrollPane(list));
+        leftlist = new JList(foods);
+        leftlist.setVisibleRowCount(4);
+        leftlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        add(new JScrollPane(leftlist));
 
-        list.addListSelectionListener(
-                new ListSelectionListener() {
+        movebutton = new JButton("Move -->");
+        movebutton.addActionListener(
+                new ActionListener() {
                     @Override
-                    public void valueChanged(ListSelectionEvent event) {
-                        getContentPane().setBackground(colors[list.getSelectedIndex()]);
-
+                    public void actionPerformed(ActionEvent event) {
+                    rightlist.setListData(leftlist.getSelectedValues());
                     }
                 }
         );
+
+        add(movebutton);
+
+        rightlist = new JList();
+        rightlist.setVisibleRowCount(4);
+        rightlist.setFixedCellWidth(110);
+        rightlist.setFixedCellHeight(15);
+        rightlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        add(new JScrollPane(rightlist));
 
 
     }
